@@ -2669,12 +2669,12 @@ function! s:ExecuteCtags(ctags_cmd) abort
     endif
 
     if tagbar#debug#enabled()
-        silent 5verbose let ctags_output = system(a:ctags_cmd)
+        silent 5verbose let ctags_output = vimproc#system(a:ctags_cmd)
         call tagbar#debug#log(v:statusmsg)
         call tagbar#debug#log('Exit code: ' . v:shell_error)
         redraw!
     else
-        silent let ctags_output = system(a:ctags_cmd)
+        silent let ctags_output = vimproc#system(a:ctags_cmd)
     endif
 
     if &shell =~ 'cmd\.exe'
