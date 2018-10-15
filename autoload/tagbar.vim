@@ -2015,8 +2015,10 @@ function! s:JumpToTag(stay_in_tagbar) abort
         call cursor(taginfo.fields.line, taginfo.fields.column)
     else
         call cursor(taginfo.fields.line, 1)
-        call search(taginfo.name, 'c', line('.'))
+        call search(substitute(taginfo.name, '\~', '', 'g'), 'c', line('.'))
     endif
+    " jwu ADD
+    call ex#hl#target_line(curline)
 
     normal! zv
 
